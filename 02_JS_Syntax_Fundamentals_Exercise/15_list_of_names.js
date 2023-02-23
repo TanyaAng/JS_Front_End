@@ -1,9 +1,9 @@
 function sortNames(names){
-    let i=1;
-    for (let name of names.sort()){
-        console.log(`${i}.${name}`);
-        i++;
-    }
+    result= names
+    .sort((a,b) => a.localeCompare(b))
+    .map((name,index) => `${index+1}.${name}`)
+    .join('\n');
+    console.log(result);
 }
 
 sortNames(["John"]);

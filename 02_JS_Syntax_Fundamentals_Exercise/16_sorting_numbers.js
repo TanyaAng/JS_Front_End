@@ -1,5 +1,5 @@
 function sortNumbers(arr) {
-    let sortedArr = arr.sort();
+    let sortedArr = arr.sort((x,y) => x-y);
 
 
     let middleIdx = Math.ceil(sortedArr.length/2);
@@ -16,12 +16,26 @@ function sortNumbers(arr) {
       }
     }
 
-    // console.log(result);
-    // for (let i=0; i<result.length; i++){
-    //     console.log(result[i]);
-    // }
     return result;
   }
+
+
+function sortNumbers(arr) {
+  let sortedArr =[...arr].sort((x,y) => x-y);
+  let step=0;
+  let result=[];
+  while (sortedArr.length>0){
+    if (step%2==0){
+      let firstEl = sortedArr.shift();
+      result.push(firstEl);
+    } else {
+      let lastEl=sortedArr.pop();
+      result.push(lastEl);
+    }
+    step++;
+  }
+  return result;
+}
 
 
 sortNumbers([1, 65, 3, 52, 48, 63, 31, -3, 18, 56]);
