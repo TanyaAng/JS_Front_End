@@ -1,7 +1,7 @@
 function storeProvision (firstArr, secondArr){
     let combined = [...firstArr,...secondArr];
     let products = {};
-    for (let i = 0; i < combined.length; i+=2){
+    for (let i = 0; i < combined.length-1; i+=2){
         let product = combined[i];
         let quantity = Number(combined[i+1]);
         if (!products.hasOwnProperty(product)) {
