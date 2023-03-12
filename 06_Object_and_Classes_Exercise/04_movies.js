@@ -15,8 +15,8 @@ function solve(input){
             let movieInfo = line.split('addMovie ');
             let movie = new Movie(movieInfo[1]);
             movies.push(movie);
-        };
-        if (movieArr.includes('directedBy')){
+        }
+        else if (movieArr.includes('directedBy')){
             let movieInfo = line.split(' directedBy ');
             let movieName = movieInfo[0];
             let movieDirector = movieInfo[1];

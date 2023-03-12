@@ -1,8 +1,9 @@
 function storeProvision (firstArr, secondArr){
+    let combined = [...firstArr,...secondArr];
     let products = {};
-    for (let i = 0; i < firstArr.length-1; i+=2){
-        let product = firstArr[i];
-        let quantity = Number(firstArr[i+1]);
+    for (let i = 0; i < combined.length-1; i+=2){
+        let product = combined[i];
+        let quantity = Number(combined[i+1]);
         if (!products.hasOwnProperty(product)) {
             products[product] = quantity;
         }
@@ -11,20 +12,8 @@ function storeProvision (firstArr, secondArr){
         };
         
     };
-
-    for (let i = 0; i < secondArr.length-1; i+=2){
-        let product = secondArr[i];
-        let quantity = Number(secondArr[i+1]);
-        if (!products.hasOwnProperty(product)) {
-            products[product] = quantity;
-        }
-        else{
-            products[product] += quantity;
-        };
-    }
-    let productsTuple = Object.entries(products);
-    for (let [key,value] of productsTuple){
-        console.log(`${key} -> ${value}`);
+    for (let product in products){
+        console.log(`${product} -> ${products[product]}`);
     }
 };
 

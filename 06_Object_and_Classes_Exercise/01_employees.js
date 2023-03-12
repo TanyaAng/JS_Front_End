@@ -1,6 +1,7 @@
+// VARIANT I
 function solve (input){
     class Employee{
-        constructor(name, id, email){
+        constructor(name, id){
             this.name = name;
             this.id = id;
         }
@@ -19,7 +20,16 @@ function solve (input){
     }
 }
 
-solve([
+// VARIANT II
+function parseEmployees (input){
+    Object.entries (input.reduce((data,employee) => {
+        data[employee] = employee.length;
+        return data;
+    }, {})
+    ).forEach(([employee,length])=>console.log(`Name: ${employee} -- Personal Number: ${length}`))
+}
+
+parseEmployees([
     'Silas Butler',
     'Adnaan Buckley',
     'Juan Peterson',

@@ -2,14 +2,9 @@ function solve(input){
     let words={}
     let searchedWords = input.shift().split(' ');
     for (let word of searchedWords) {
-        words[word] = 0;
+        let count = input.filter((w) => w===word).length;
+        words[word] = count;
     }
-    
-    for (let word of input){
-        if (words.hasOwnProperty(word)){
-            words[word]+=1;
-        };
-    };
     let sortable = Object.entries(words);
     let sortedWords = sortable.sort(function([,a],[,b]){
         return b-a;
