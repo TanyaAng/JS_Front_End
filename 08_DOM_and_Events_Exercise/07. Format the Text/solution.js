@@ -3,31 +3,14 @@ function solve() {
   let outputDiv = document.getElementById('output');
   
   let arrText = text.split('.');
-  let filterText = arrText.filter(str => str!='').map(str => str+'.');
-  document.getElementById('input').value='';
+  let sentences = arrText.filter(str => str!='').map(str => str+'.').map(str => str.trimStart());
 
-  
-
-  if (filterText.length<=3){
+  while (sentences.length>0){
+    let paragraphSentences = sentences.splice(0,3);
     let paragraph = document.createElement('p');
-    let textContent = '';
-    for (let line of filterText){
-      textContent+=line;
-    }
-    paragraph.textContent = textContent;
+    paragraph.textContent = paragraphSentences;
     outputDiv.appendChild(paragraph);
   }
-  else{
-    let iteraions = Math.floor(filterText.length/3);
-    for (let i=0; i<=iteraions; i+=3){
-      let paragraph = document.createElement('p');
-      let currentParagraph = '';
-      currentParagraph+=filterText[i];
-      currentParagraph+=filterText[i+1];
-      currentParagraph+=filterText[i+2];
-      console.log(currentParagraph);
-      paragraph.textContent=currentParagraph;
-      outputDiv.appendChild(paragraph);
-    }
-  }
+
+  document.getElementById('input').value='';
 }
