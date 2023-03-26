@@ -6,12 +6,11 @@ function attachEvents() {
     buttonViewPost.addEventListener('click', viewPost);
 
     const selector = document.getElementById('posts');
-    const BASE_URL_POSTS = 'http://localhost:3030/jsonstore/blog/posts';
+    const BASE_URL_POSTS = 'http://localhost:3030/jsonstore/blog/posts/';
+    const BASE_URL_COMMENTS = 'http://localhost:3030/jsonstore/blog/comments/';
 
     function viewAllPosts(event){
-        if (event) {
-            event.preventDefault();
-        }
+        selector.innerHTML = '';
         fetch(BASE_URL_POSTS)
             .then((res) => res.json())
             .then((posts)=> 
@@ -30,10 +29,6 @@ function attachEvents() {
     }
 
     function viewPost(event){
-        if (event) {
-            event.preventDefault();
-        }
-        const BASE_URL_COMMENTS = 'http://localhost:3030/jsonstore/blog/comments';
         const selectedPostID = selector.value;
         console.log(selectedPostID);
         const postTitle = document.getElementById('post-title');
@@ -44,17 +39,13 @@ function attachEvents() {
         postBody.textContent='';
 
 
-        fetch(BASE_URL_POSTS)
+        fetch(`${BASE_URL_POSTS}${selectedPostID}`)
             .then((res) => res.json())
-            .then((posts)=> 
+            .then((post)=> 
             {
-                for (const post in posts){
-                    const currentPost = posts[post];
-                    if (currentPost.id===selectedPostID){
-                        postTitle.textContent = currentPost.title.toUpperCase();
-                        postBody.textContent = currentPost.body;
-                    }
-                }
+                postTitle.textContent = post.title;
+                postBody.textContent = post.body;
+
             })
             .catch ((err)=> console.log(err))
 

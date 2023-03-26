@@ -1,9 +1,40 @@
 function attachEvents() {
+  const BASE_URL ='http://localhost:3030/jsonstore/collections/students'
   const button  = document.getElementById('submit');
+  const tbody = document.querySelector('table > tbody');
+
+  window.addEventListener('load', loadStudents);
   button.addEventListener('click', submitStudentHandler);
 
+  function loadStudents(){
+    fetch(BASE_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      Object.values(data).forEach(({ firstName, lastName, facultyNumber, grade }) => {
+        let tr = document.createElement('tr');
+        let firstNameTH = document.createElement('th');
+        firstNameTH.textContent = firstName;
+        tr.appendChild(firstNameTH);
+
+        let lastNameTH = document.createElement('th');
+        lastNameTH.textContent = lastName;
+        tr.appendChild(lastNameTH);
+
+        let facultyNumberTH = document.createElement('th');
+        facultyNumberTH.textContent = facultyNumber;
+        tr.appendChild(facultyNumberTH);
+
+        let gradeTH = document.createElement('th');
+        gradeTH.textContent = grade;
+        tr.appendChild(gradeTH);
+        tbody.appendChild(tr);
+      });
+      })
+    .catch((err) => console.log(err));
+  }
+
   function submitStudentHandler(){
-    const BASE_URL ='http://localhost:3030/jsonstore/collections/students'
+    
     const firstName = document.getElementsByName('firstName')[0];
     let firstNameValue = firstName.value;
     const lastName = document.getElementsByName('lastName')[0];
@@ -13,7 +44,7 @@ function attachEvents() {
     const grade = document.getElementsByName('grade')[0];
     let gradeValue = grade.value;
 
-    const tbody = document.getElementsByTagName('tbody')[0];
+    
 
     if (!firstNameValue){
       alert("Please enter your first name");

@@ -7,7 +7,7 @@ function solve() {
 
     const arriveInfo = document.getElementById('arrive');
 
-    const infoContainer = document.getElementById('info');
+    const infoContainer = document.getElementsByClassName('info')[0];
 
     function depart() {
         fetch(`${BASE_URL}${nextBusStop}`)
