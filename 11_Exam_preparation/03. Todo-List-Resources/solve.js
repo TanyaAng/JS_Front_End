@@ -47,7 +47,6 @@ function attachEvents() {
         objects = Object.values(data);
         console.log(objects);
         for (let item of objects) {
-          console.log(item);
           let li = createElement('li', '', item._id, '', '', ul);
           createElement('span', item.name, '', '', '', li);
           let removeBtn = createElement('button', 'Remove', '', '', '', li);
