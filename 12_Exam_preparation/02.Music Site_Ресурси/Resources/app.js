@@ -56,27 +56,36 @@ function solve() {
         inputData.forEach(el => el.value='');
     }
 
-    function saveSongHandler(event){
-        const parent = event.target.parentElement;
-        const nameHeader = parent.querySelector(':nth-child(3)');
-        const nameHeaderValue = nameHeader.textContent.split(' ');
-        const songName = nameHeaderValue[1];
-        console.log(songName);
-        parent.remove();
+    function saveSongHandler(){
+      const songRef = this.parentNode;
+      const saveBtn = songRef.querySelector('.save-btn');
+      const likeBtn = songRef.querySelector('.like-btn');
 
-        console.log(songs);
+      savedCtn.appendChild(songRef);
+      
+      saveBtn.remove();
+      likeBtn.remove();
 
-        let currentSong = songs.find(song => song.name === songName);
-        console.log(`Current song: ${currentSong}`);
+        // const parent = event.target.parentElement;
+        // const nameHeader = parent.querySelector(':nth-child(3)');
+        // const nameHeaderValue = nameHeader.textContent.split(' ');
+        // const songName = nameHeaderValue[1];
+        // console.log(songName);
+        // parent.remove();
 
-        let divCtn = createElement('div','','',['hits-info'], '',savedCtn);
-        createElement('img', '', '', '', {'src':"./static/img/img.png"}, divCtn);
-        createElement('h2', `Genre: ${currentSong.genre}`, '', '','',divCtn);
-        createElement('h2', `Name: ${currentSong.name}`, '', '','',divCtn);
-        createElement('h2', `Author: ${currentSong.author}`, '', '','',divCtn);
-        createElement('h3', `Date: ${currentSong.date}`, '', '','',divCtn);
-        const deleteBtn = createElement('button', `Delete`, '', ['delete-btn'],'',divCtn);
-        deleteBtn.addEventListener('click', deleteSongHandler);
+        // console.log(songs);
+
+        // let currentSong = songs.find(song => song.name === songName);
+        // console.log(`Current song: ${currentSong}`);
+
+        // let divCtn = createElement('div','','',['hits-info'], '',savedCtn);
+        // createElement('img', '', '', '', {'src':"./static/img/img.png"}, divCtn);
+        // createElement('h2', `Genre: ${currentSong.genre}`, '', '','',divCtn);
+        // createElement('h2', `Name: ${currentSong.name}`, '', '','',divCtn);
+        // createElement('h2', `Author: ${currentSong.author}`, '', '','',divCtn);
+        // createElement('h3', `Date: ${currentSong.date}`, '', '','',divCtn);
+        // const deleteBtn = createElement('button', `Delete`, '', ['delete-btn'],'',divCtn);
+        // deleteBtn.addEventListener('click', deleteSongHandler);
     }
 
     function likeSongHandler(event){
