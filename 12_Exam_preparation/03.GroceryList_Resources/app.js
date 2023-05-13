@@ -94,8 +94,6 @@ function solve(){
             updateBtn.disabled = true;
           })
           .catch(err=>console.log(err));
-
-
     }
 
 
